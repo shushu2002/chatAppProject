@@ -33,6 +33,8 @@ def handle_client(client):  # Takes client socket as argument.
             break
         elif msg == "{delete}":
             deleteMessage(channel, name)
+        elif msg == "{deleteAll}":
+            deleteChannelHistory(channel)
         elif msg.startswith("{channel}"):
             tmp = msg.split(" ")
             if len(tmp) != 2:
@@ -72,6 +74,8 @@ def quitUser(client, channel, name):
 def deleteMessage(channel, user):
     _historyStore.deleteLastMessage(channel, user)
 
+def deleteChannelHistory():
+    _historyStore.deleteChannelHistory()
 #Changes the channel of a user
 def changeChannel(oldChannel, newChannel, client, name):
     _chatManager.removeFromChannel(oldChannel, name)

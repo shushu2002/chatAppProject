@@ -29,6 +29,8 @@ class HistoryStore:
                         WHERE Channel=? 
                         AND User=? 
                         AND InsertDate=?"""
+    _deleteChannel = """DELETE FROM ChannelHistory
+                        WHERE Channel=?"""
 
     def __init__(self):
         # Check if the DB already exist
@@ -70,5 +72,11 @@ class HistoryStore:
 #Deletes last message for the user
             (channel, user, date) = data[0]
             connection.cursor().execute(self._deleteMessage, (channel, user, date))
+        connection.commit()
+        connection.close()
+
+    def deleteChannelHistory(self,channel):
+        connection = self.__connect()
+        connection.cursor().execute(self._deleteChannel(channel))
         connection.commit()
         connection.close()
