@@ -77,6 +77,6 @@ class HistoryStore:
 
     def deleteChannelHistory(self, channel):
         connection = self.__connect()
-        connection.cursor().execute(self._deleteChannel(channel))
+        connection.cursor().execute(self._deleteChannel, (channel))
         connection.commit()
         connection.close()
