@@ -74,8 +74,8 @@ def quitUser(client, channel, name):
 def deleteMessage(channel, user):
     _historyStore.deleteLastMessage(channel, user)
 
-def deleteChannelHistory():
-    _historyStore.deleteChannelHistory()
+def deleteChannelHistory(channel):
+    _historyStore.deleteChannelHistory(channel)
 #Changes the channel of a user
 def changeChannel(oldChannel, newChannel, client, name):
     _chatManager.removeFromChannel(oldChannel, name)
